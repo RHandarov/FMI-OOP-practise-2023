@@ -14,6 +14,23 @@ struct Time {
         return second + 60 * minute + 60 * 60 * second;
     }
 
+    void enter_time_in_console() {
+        std::cin >> hour >> minute >> second;
+    }
+
+    Time add(const Time other_time) const {
+        Time added_time;
+        added_time.second = second + other_time.second;
+        added_time.minute = minute + other_time.minute;
+        added_time.hour = hour + other_time.hour;
+
+        return added_time;
+    }
+
+    void print_to_console() const {
+        std::cout << '(' << hour << ", " << minute << ", " << second << ")\n";
+    }
+
     Time get_difference(const Time other_time) const {
         unsigned int num_seconds = convertToSeconds();
         unsigned int other_time_num_seconds = other_time.convertToSeconds();
@@ -43,6 +60,24 @@ struct Event {
 };
 
 int main() {
+    std::cout << "n = ";
+    unsigned int n;
+    std::cin >> n;
+
+    Time total_duration = { 0, 0, 0 };
+
+    while (n--) {
+        Event event;
+        std::cin.getline(event.title, MAX_STRING_LENGTH, ' ');
+        std::cin.getline(event.organizer, MAX_STRING_LENGTH, ' ');
+        event.start_time.enter_time_in_console();
+        event.end_time.enter_time_in_console();
+
+        total_duration.add(event.get_duration());
+    }
+
+    total_duration.print_to_console();
+
     return 0;
 }
 
