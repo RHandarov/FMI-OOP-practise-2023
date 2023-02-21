@@ -10,7 +10,25 @@ struct Time {
     unsigned int minute;
     unsigned int second;
 
-    Time get_difference(const Time other_time) const;
+    unsigned int convertToSeconds() const {
+        return second + 60 * minute + 60 * 60 * second;
+    }
+
+    Time get_difference(const Time other_time) const {
+        unsigned int num_seconds = convertToSeconds();
+        unsigned int other_time_num_seconds = other_time.convertToSeconds();
+        unsigned int difference_in_seconds = (num_seconds > other_time_num_seconds) ? num_seconds - other_time_num_seconds : other_time_num_seconds - num_seconds;
+
+        Time difference;
+
+        difference.second = difference_in_seconds % 60;
+        difference_in_seconds /= 60;
+        difference.minute = difference_in_seconds % 60;
+        difference_in_seconds /= 60;
+        difference.hour = difference_in_seconds;
+
+        return difference;
+    }
 };
 
 struct Event {
@@ -19,7 +37,9 @@ struct Event {
     Time start_time;
     Time end_time;
 
-    Time get_duration() const;
+    Time get_duration() const {
+        return end_time.get_difference(start_time);
+    }
 };
 
 int main() {
