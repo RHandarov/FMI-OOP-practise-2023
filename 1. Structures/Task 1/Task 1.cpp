@@ -11,20 +11,17 @@ struct Time {
     unsigned int second;
 
     unsigned int convertToSeconds() const {
-        return second + 60 * minute + 60 * 60 * second;
+        return second + 60 * minute + 60 * 60 * hour;
     }
 
     void enter_time_in_console() {
         std::cin >> hour >> minute >> second;
     }
 
-    Time add(const Time other_time) const {
-        Time added_time;
-        added_time.second = second + other_time.second;
-        added_time.minute = minute + other_time.minute;
-        added_time.hour = hour + other_time.hour;
-
-        return added_time;
+    void add(const Time other_time) {
+        second = second + other_time.second;
+        minute = minute + other_time.minute;
+        hour = hour + other_time.hour;
     }
 
     void print_to_console() const {
@@ -64,14 +61,18 @@ int main() {
     unsigned int n;
     std::cin >> n;
 
+    std::cin.ignore();
+
     Time total_duration = { 0, 0, 0 };
 
     while (n--) {
         Event event;
-        std::cin.getline(event.title, MAX_STRING_LENGTH, ' ');
-        std::cin.getline(event.organizer, MAX_STRING_LENGTH, ' ');
+        std::cin.getline(event.title, MAX_STRING_LENGTH);
+        std::cin.getline(event.organizer, MAX_STRING_LENGTH);
         event.start_time.enter_time_in_console();
         event.end_time.enter_time_in_console();
+
+        std::cin.ignore();
 
         total_duration.add(event.get_duration());
     }
