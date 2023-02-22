@@ -3,7 +3,24 @@
 
 #include <iostream>
 
+const size_t MAX_STRING_LENGTH = 257; //because of \0
+const size_t EGN_LENGTH = 15;
+const size_t MAX_NUMBER_OF_STUDENTS = 100;
+
+struct Student {
+    char name[MAX_STRING_LENGTH];
+    char surname[MAX_STRING_LENGTH];
+    char EGN[EGN_LENGTH];
+};
+
+struct University {
+    char name[MAX_STRING_LENGTH];
+    Student students[MAX_NUMBER_OF_STUDENTS];
+};
+
 int main() {
+    
+
     return 0;
 }
 
