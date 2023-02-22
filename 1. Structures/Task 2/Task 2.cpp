@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include <cstring>
 
 const size_t MAX_STRING_LENGTH = 257; //because of \0
 const size_t EGN_LENGTH = 15;
@@ -11,11 +12,37 @@ struct Student {
     char name[MAX_STRING_LENGTH];
     char surname[MAX_STRING_LENGTH];
     char EGN[EGN_LENGTH];
+
+    bool equalTo(const Student compredStudent) const {
+        if (strcmp(name, compredStudent.name) != 0) {
+            return false;
+        }
+
+        if (strcmp(surname, compredStudent.surname) != 0) {
+            return false;
+        }
+
+        if (strcmp(EGN, compredStudent.EGN) != 0) {
+            return false;
+        }
+
+        return true;
+    }
 };
 
 struct University {
     char name[MAX_STRING_LENGTH];
     Student students[MAX_NUMBER_OF_STUDENTS];
+
+    bool hasStudent(const Student student) const {
+        for (size_t index = 0; index < MAX_NUMBER_OF_STUDENTS; ++index) {
+            if (students[index].equalTo(student)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 };
 
 int main() {
