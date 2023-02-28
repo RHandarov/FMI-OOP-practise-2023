@@ -11,30 +11,52 @@ inline unsigned int absoluteValue(unsigned int a, unsigned int b) {
 	return b - a;
 }
 
-Time::Time() {
-	this->hour = 0;
-	this->minute = 0;
-	this->second = 0;
-}
-
-Time::Time(unsigned int hour, unsigned int minute, unsigned int second) {
+void Time::setHour(unsigned int hour) {
 	if (hour >= 24) {
 		throw std::exception("Hours cannot be bigger than 23!");
 	}
 
 	this->hour = hour;
+}
 
+unsigned int Time::getHour() const {
+	return hour;
+}
+
+void Time::setMinute(unsigned int minute) {
 	if (minute >= 60) {
 		throw std::exception("Minutes cannot be bigger than 59!");
 	}
 
 	this->minute = minute;
+}
 
+unsigned int Time::getMinute() const {
+	return minute;
+}
+
+void Time::setSecond(unsigned int second) {
 	if (second >= 60) {
 		throw std::exception("Seconds cannot be bigger than 59!");
 	}
 
 	this->second = second;
+}
+
+unsigned int Time::getSecond() const {
+	return second;
+}
+
+Time::Time() {
+	setHour(0);
+	setMinute(0);
+	setSecond(0);
+}
+
+Time::Time(unsigned int hour, unsigned int minute, unsigned int second) {
+	setHour(hour);
+	setMinute(minute);
+	setSecond(second);
 }
 
 Time::Time(unsigned int timeInSeconds) {
