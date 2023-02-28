@@ -13,9 +13,10 @@ private:
 	Time endTime;
 public:
 	Event();
-	Event(const char* title, const char* organizer, Time startTime, Time endTime);
+	Event(const char* title, const char* organizer, const Time startTime, const Time endTime);
 
 	Time getDuration() const;
+	bool areIntersecting(const Event other) const;
 };
 
 #endif // !EVENT_H

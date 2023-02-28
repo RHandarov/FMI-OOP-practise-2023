@@ -22,9 +22,11 @@ public:
 	void setSecond(unsigned int second);
 	unsigned int getSecond() const;
 
-	Time getDifference(Time other) const;
-	Time addToTime(Time other) const;
+	Time getDifference(const Time other) const;
+	Time addToTime(const Time other) const;
 	void printToConsole() const;
+
+	int compare(const Time other) const;
 };
 
 #endif // !TIME_H

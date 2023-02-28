@@ -75,7 +75,7 @@ inline unsigned int Time::getTimeInSeconds() const {
 	return hour * 60 * 60 + minute * 60 + second;
 }
 
-Time Time::getDifference(Time other) const {
+Time Time::getDifference(const Time other) const {
 	unsigned int firstTimeInSeconds = getTimeInSeconds();
 	unsigned int secondTimeInSeconds = other.getTimeInSeconds();
 	unsigned int differenceInSeconds = absoluteValue(firstTimeInSeconds, secondTimeInSeconds);
@@ -86,6 +86,21 @@ void Time::printToConsole() const {
 	std::cout << '(' << hour << ", " << minute << ", " << second << ')';
 }
 
-Time Time::addToTime(Time other) const {
+Time Time::addToTime(const Time other) const {
 	return Time(getTimeInSeconds() + other.getTimeInSeconds());
+}
+
+int Time::compare(const Time other) const {
+	unsigned int firstTimeInSeconds = getTimeInSeconds();
+	unsigned int secondTimeInSeconds = other.getTimeInSeconds();
+
+	if (firstTimeInSeconds < secondTimeInSeconds) {
+		return -1;
+	}
+
+	if (firstTimeInSeconds == secondTimeInSeconds) {
+		return 0;
+	}
+
+	return 1;
 }
