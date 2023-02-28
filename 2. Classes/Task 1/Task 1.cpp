@@ -2,8 +2,40 @@
 //
 
 #include <iostream>
+#include "Time.h"
+#include "Event.h"
 
 int main() {
+    unsigned int n;
+    std::cin >> n;
+
+    Time totalDuration = Time();
+
+    while (n--) {
+        std::cin.ignore();
+
+        char title[MAX_STRING_SIZE];
+        std::cin.getline(title, MAX_STRING_SIZE);
+
+        char organizer[MAX_STRING_SIZE];
+        std::cin.getline(organizer, MAX_STRING_SIZE);
+
+        unsigned int hour, minute, second;
+        std::cin >> hour >> minute >> second;
+
+        Time startTime = Time(hour, minute, second);
+
+        std::cin >> hour >> minute >> second;
+
+        Time endTime = Time(hour, minute, second);
+
+        Event event = Event(title, organizer, startTime, endTime);
+        totalDuration = totalDuration.addToTime(event.getDuration());
+    }
+
+    totalDuration.printToConsole();
+    std::cout << std::endl;
+
     return 0;
 }
 

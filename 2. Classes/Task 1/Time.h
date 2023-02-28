@@ -14,6 +14,8 @@ public:
 	Time(unsigned int timeInSeconds);
 
 	Time getDifference(Time other) const;
+	Time addToTime(Time other) const;
+	void printToConsole() const;
 };
 
 #endif // !TIME_H

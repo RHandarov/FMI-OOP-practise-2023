@@ -1,5 +1,6 @@
 #include "Time.h"
 #include <exception>
+#include <iostream>
 
 //helper functions
 inline unsigned int absoluteValue(unsigned int a, unsigned int b) {
@@ -57,4 +58,12 @@ Time Time::getDifference(Time other) const {
 	unsigned int secondTimeInSeconds = other.getTimeInSeconds();
 	unsigned int differenceInSeconds = absoluteValue(firstTimeInSeconds, secondTimeInSeconds);
 	return Time(differenceInSeconds);
+}
+
+void Time::printToConsole() const {
+	std::cout << '(' << hour << ", " << minute << ", " << second << ')';
+}
+
+Time Time::addToTime(Time other) const {
+	return Time(getTimeInSeconds() + other.getTimeInSeconds());
 }
