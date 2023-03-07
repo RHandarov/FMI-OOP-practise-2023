@@ -9,6 +9,8 @@ private:
 	unsigned int capacity;
 
 	void resize();
+
+	void copy(const int* elements, const unsigned int numElements, const unsigned int capacity);
 public:
 	Set();
 	Set(const Set& other);
