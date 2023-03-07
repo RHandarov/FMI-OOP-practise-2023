@@ -138,13 +138,13 @@ bool Set::deleteElement(const int element) {
 	}
 }
 
-void Set::setUnion(const Set other) {
+void Set::setUnion(const Set& other) {
 	for (unsigned int index = 0; index < other.numElements; ++index) {
 		this->addElement(other.elements[index]);
 	}
 }
 
-void Set::setIntersection(const Set other) {
+void Set::setIntersection(const Set& other) {
 	Set intersection;
 
 	for (unsigned int index = 0; index < this->numElements; ++index) {

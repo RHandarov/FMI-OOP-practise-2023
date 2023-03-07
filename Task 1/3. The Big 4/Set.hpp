@@ -25,8 +25,8 @@ public:
 
 	bool addElement(const int element);
 	bool deleteElement(const int element);
-	void setUnion(const Set other);
-	void setIntersection(const Set other);
+	void setUnion(const Set& other);
+	void setIntersection(const Set& other);
 
 	void print() const;
 };
