@@ -8,9 +8,13 @@ private:
 	unsigned int numElements;
 	unsigned int capacity;
 
+	unsigned int calculateCurrentCapacity() const;
+	bool shouldResize() const;
 	void resize();
 
 	void copy(const int* elements, const unsigned int numElements, const unsigned int capacity);
+	
+	int getIndex(const int element) const;
 public:
 	Set();
 	Set(const Set& other);
