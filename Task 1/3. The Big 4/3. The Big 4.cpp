@@ -2,8 +2,52 @@
 //
 
 #include <iostream>
+#include "Set.hpp"
 
 int main() {
+    Set set1;
+
+    set1.print();
+    std::cout << std::endl;
+
+    for (unsigned int i = 0; i < 20; ++i) {
+        set1.addElement(i);
+    }
+
+    set1.print();
+    std::cout << std::endl;
+
+    for (unsigned int i = 0; i < 20; i += 2) {
+        set1.deleteElement(i);
+    }
+
+    set1.deleteElement(9);
+    set1.deleteElement(9);
+
+    set1.print();
+    std::cout << std::endl;
+
+    Set set2;
+
+    set2.addElement(1);
+    set2.addElement(2);
+    set2.addElement(3);
+
+    set2.print();
+    std::cout << std::endl;
+
+    Set set3 = set1;
+    set3.setUnion(set2);
+
+    set3.print();
+    std::cout << std::endl;
+
+    Set set4 = set1;
+    set4.setIntersection(set2);
+
+    set4.print();
+    std::cout << std::endl;
+
     return 0;
 }
 

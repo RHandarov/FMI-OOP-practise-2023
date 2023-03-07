@@ -12,7 +12,7 @@ private:
 	bool shouldResize() const;
 	void resize();
 
-	void copy(const int* elements, const unsigned int numElements, const unsigned int capacity);
+	void copy(const int* elements, const unsigned int numElements);
 	
 	int getIndex(const int element) const;
 public:

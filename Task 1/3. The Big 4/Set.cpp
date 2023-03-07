@@ -8,16 +8,16 @@ void swap(int& a, int& b) {
 	b = help;
 }
 
-void Set::copy(const int* elements, const unsigned int numElements, const unsigned int capacity) {
+void Set::copy(const int* elements, const unsigned int numElements) {
 	this->numElements = numElements;
-	this->capacity = capacity;
+	this->capacity = this->calculateCurrentCapacity();
 
 	if (this->elements) {
 		delete[] this->elements;
 	}
 
 	this->elements = new int[this->capacity];
-	for (unsigned int index = 0; index < this->capacity; ++index) {
+	for (unsigned int index = 0; index < this->numElements; ++index) {
 		this->elements[index] = elements[index];
 	}
 }
@@ -29,12 +29,12 @@ Set::Set() {
 }
 
 Set::Set(const Set& other) {
-	this->copy(other.elements, other.numElements, other.capacity);
+	this->copy(other.elements, other.numElements);
 }
 
 Set& Set::operator=(const Set& other) {
 	if (this != &other) {
-		this->copy(other.elements, other.numElements, other.capacity);
+		this->copy(other.elements, other.numElements);
 	}
 
 	return *this;
