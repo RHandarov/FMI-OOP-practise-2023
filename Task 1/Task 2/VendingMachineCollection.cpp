@@ -1,4 +1,7 @@
+#include <exception>
+
 #include "VendingMachineCollection.hpp"
+#include "VendingMachine.hpp"
 
 unsigned int VendingMachineCollection::calculateAppropriateCapacity() const {
 	unsigned int newCapacity = 1;
@@ -54,6 +57,29 @@ VendingMachineCollection& VendingMachineCollection::operator=(const VendingMachi
 	}
 
 	return *this;
+}
+
+VendingMachine& VendingMachineCollection::getMachineById(unsigned int id) const {
+	for (unsigned int index = 0; index < this->numNachines; ++index) {
+		if (this->machines[index].getId() == id) {
+			return this->machines[index];
+		}
+	}
+
+	throw std::exception("Machine was not found!");
+}
+
+const char* VendingMachineCollection::getMachineAddressById(unsigned int id) const {
+	return this->getMachineById(id).getAddress();
+}
+
+void VendingMachineCollection::getNumGoodsInMachineById(unsigned int id, unsigned int& numSweets,
+	unsigned int& numSnacks, unsigned int& numBeverages) const {
+	const VendingMachine& machine = this->getMachineById(id);
+
+	numSweets = machine.getNumSweets();
+	numSnacks = machine.getNumSnacks();
+	numBeverages = machine.getNumBeverages();
 }
 
 VendingMachineCollection::~VendingMachineCollection() {

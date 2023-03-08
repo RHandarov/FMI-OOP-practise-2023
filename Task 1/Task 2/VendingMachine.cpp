@@ -42,6 +42,26 @@ void VendingMachine::setAddress(const char* address) {
 	strcpy(this->address, address);
 }
 
+unsigned int VendingMachine::getId() const {
+	return this->id;
+}
+
+const char* VendingMachine::getAddress() const {
+	return this->address;
+}
+
+unsigned int VendingMachine::getNumSweets() const {
+	return this->numSweets;
+}
+
+unsigned int VendingMachine::getNumSnacks() const {
+	return this->numSnacks;
+}
+
+unsigned int VendingMachine::getNumBeverages() const {
+	return this->numBeverages;
+}
+
 //operators
 VendingMachine& VendingMachine::operator=(const VendingMachine& other) {
 	if (this != &other) {

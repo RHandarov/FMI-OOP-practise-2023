@@ -21,6 +21,12 @@ public:
 
 	VendingMachine& operator=(const VendingMachine& other);
 
+	unsigned int getId() const;
+	const char* getAddress() const;
+	unsigned int getNumSweets() const;
+	unsigned int getNumSnacks() const;
+	unsigned int getNumBeverages() const;
+
 	~VendingMachine();
 };
 

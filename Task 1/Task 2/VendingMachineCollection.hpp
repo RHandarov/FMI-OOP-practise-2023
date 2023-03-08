@@ -13,6 +13,8 @@ private:
 	void resize();
 
 	void initialize(const VendingMachine* machines, const unsigned int numMachines);
+
+	VendingMachine& getMachineById(unsigned int id) const;
 public:
 	VendingMachineCollection();
 	VendingMachineCollection(const VendingMachineCollection& other);
