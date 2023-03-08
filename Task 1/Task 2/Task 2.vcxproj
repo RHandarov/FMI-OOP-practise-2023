@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="solution.cpp" />
     <ClCompile Include="VendingMachine.cpp" />
+    <ClCompile Include="VendingMachineCollection.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VendingMachine.hpp" />

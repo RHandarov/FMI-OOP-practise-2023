@@ -8,6 +8,11 @@ private:
 	VendingMachine* machines;
 	unsigned int numNachines;
 	unsigned int capacity;
+
+	unsigned int calculateAppropriateCapacity() const;
+	void resize();
+
+	void initialize(const VendingMachine* machines, const unsigned int numMachines);
 public:
 	VendingMachineCollection();
 	VendingMachineCollection(const VendingMachineCollection& other);
