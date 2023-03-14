@@ -18,5 +18,13 @@
     <ClCompile Include="Task-1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Set.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Set.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
