@@ -24,11 +24,23 @@ public:
 	Set& operator=(const Set& other);
 	Set& operator=(Set&& other);
 
+	Set operator+(const Set& other) const;
+	Set& operator+=(const Set& other);
+
+	Set operator+(const int addNumber) const;
+	friend Set operator+(const int addNumber, const Set& set);
+
+	Set operator*(const int number) const;
+	friend Set operator*(const int number, const Set& set);
+
+	Set operator/(const Set& other) const;
+	Set& operator/=(const Set& other);
+
 	~Set();
 
 	bool addElement(const int element);
 	bool deleteElement(const int element);
-	void setUnion(const Set& other);
+	Set& setUnion(const Set& other);
 	void setIntersection(const Set& other);
 
 	void print() const;

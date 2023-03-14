@@ -2,10 +2,32 @@
 //
 
 #include <iostream>
+#include "Set.hpp"
 
-int main()
-{
-    std::cout << "Hello World!\n";
+int main() {
+    Set testSet;
+
+    for (unsigned int index = 0; index < 11; ++index) {
+        testSet.addElement(index);
+    }
+
+    testSet.print();
+    std::cout << std::endl;
+
+    testSet = testSet + 2;
+
+    testSet.print();
+    std::cout << std::endl;
+
+    testSet = 2 + testSet;
+
+    testSet.print();
+    std::cout << std::endl;
+
+    testSet = 3 * testSet;
+
+    testSet.print();
+    std::cout << std::endl;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

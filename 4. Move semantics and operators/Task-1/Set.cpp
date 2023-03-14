@@ -162,10 +162,12 @@ bool Set::deleteElement(const int element) {
 	}
 }
 
-void Set::setUnion(const Set& other) {
+Set& Set::setUnion(const Set& other) {
 	for (unsigned int index = 0; index < other.numElements; ++index) {
 		this->addElement(other.elements[index]);
 	}
+
+	return *this;
 }
 
 void Set::setIntersection(const Set& other) {
@@ -192,4 +194,65 @@ void Set::print() const {
 	}
 
 	std::cout << ')';
+}
+
+Set Set::operator+(const Set& other) const {
+	Set result(*this);
+	result.setUnion(other);
+
+	return result;
+}
+
+Set& Set::operator+=(const Set& other) {
+	return this->setUnion(other);
+}
+
+Set Set::operator+(const int addNumber) const {
+	Set result = *this;
+
+	for (unsigned int index = 0; index < result.numElements; ++index) {
+		result.elements[index] += addNumber;
+	}
+
+	return result;
+}
+
+Set operator+(const int addNumber, const Set& set) {
+	return set + addNumber;
+}
+
+Set Set::operator*(const int number) const {
+	Set result = *this;
+
+	for (unsigned int index = 0; index < result.numElements; ++index) {
+		result.elements[index] *= number;
+	}
+
+	return result;
+}
+
+Set operator*(const int number, const Set& set) {
+	return set * number;
+}
+
+Set Set::operator/(const Set& other) const {
+	Set result;
+
+	for (unsigned int index = 0; index < this->numElements; ++index) {
+		if (other.getIndex(this->elements[index]) == -1) {
+			result.addElement(this->elements[index]);
+		}
+	}
+
+	return result;
+}
+
+Set& Set::operator/=(const Set& other) {
+	for (unsigned int index = 0; index < this->numElements; ++index) {
+		if (other.getIndex(this->elements[index]) != -1) {
+			this->deleteElement(this->elements[index]);
+		}
+	}
+
+	return *this;
 }
