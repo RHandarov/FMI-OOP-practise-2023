@@ -135,3 +135,64 @@ VendingMachine::~VendingMachine() {
 	freeAddress();
 	freeWarningMessages();
 }
+
+void VendingController::setNumMachines(int numMachines) {
+	if (numMachines < 0) {
+		numMachines = 0;
+	}
+
+	this->numMachines = numMachines;
+}
+
+void VendingController::setCapacity() {
+	this->capacity = CAPACITY;
+}
+
+void VendingController::setVendingMachineList(const VendingMachine* vendingMachineList) {
+	this->vendingMachineList = new VendingMachine[this->capacity];
+
+	for (unsigned int index = 0; index < this->numMachines; ++index) {
+		this->vendingMachineList[index] = vendingMachineList[index];
+	}
+}
+
+void VendingController::copy(int numMachines, const VendingMachine* machines) {
+	setNumMachines(numMachines);
+	setCapacity();
+	freeMemory();
+	setVendingMachineList(vendingMachineList);
+}
+
+inline void VendingController::freeMemory() {
+	if (this->vendingMachineList) {
+		delete[] this->vendingMachineList;
+	}
+}
+
+VendingController::VendingController() {
+	copy(0, nullptr);
+}
+
+VendingController::VendingController(const VendingController& other) {
+	copy(other.numMachines, other.vendingMachineList);
+}
+
+VendingController::VendingController(VendingController&& other) {
+	setNumMachines(numMachines);
+	setCapacity();
+	vendingMachineList = other.vendingMachineList;
+
+	other.vendingMachineList = nullptr;
+}
+
+VendingController& VendingController::operator=(const VendingController& other) {
+	if (this != &other) {
+		copy(other.numMachines, other.vendingMachineList);
+	}
+
+	return *this;
+}
+
+VendingController::~VendingController() {
+	freeMemory();
+}

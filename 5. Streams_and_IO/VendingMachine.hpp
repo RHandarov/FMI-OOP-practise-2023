@@ -57,8 +57,24 @@ class VendingController {
     int numMachines;
     int capacity;
 
+    void setNumMachines(int numMachines);
+    void setCapacity();
+    void setVendingMachineList(const VendingMachine* vendingMachineList);
+
+    void copy(int numMachines, const VendingMachine* machines);
+
+    void freeMemory();
+
 public:
     //include big 4-5-6 
+    VendingController();
+    VendingController(const VendingController& other);
+    VendingController(VendingController&& other);
+
+    VendingController& operator=(const VendingController& other);
+
+    ~VendingController();
+
     void addVendingMachine(VendingMachine machine);
     void getAddressOfMachine(int machineID);
     void getInventoryOfMachine(int machineID);
