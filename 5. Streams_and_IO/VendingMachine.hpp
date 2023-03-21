@@ -1,10 +1,14 @@
 #ifndef VENDING_MACHINE_H
 #define VENDING_MACHINE_H
 
+const unsigned int CAPACITY = 1000; //for test purpouses
+
 struct Inventory {
     unsigned int salty;
     unsigned int sweet;
     unsigned int drinks;
+
+    Inventory();
 
     void changeSalty(int quantity);
     void changeSweets(int quantity);
@@ -19,6 +23,22 @@ class VendingMachine {
     char** warningMessages;
     int numWarningMsgs;
     int capacity;
+
+    void setId(int id);
+    void setAddress(const char* address);
+    void setInventory(const Inventory& inventory);
+    void setWarningMessages(const char** warningMessages);
+    void setNumWarningMessages(int numWarningMessages);
+    void setCapacity();
+
+    void copy(int id, const char* address, const Inventory& inventory,
+        int numWarningMessages, const char** warningMessages);
+
+    void move(int id, char* address, const Inventory& inventory,
+        int numWarningMessages, const char** warningMessages);
+
+    void freeAddress();
+    void freeWarningMessages();
 
 public:
     VendingMachine(); //default constructor
