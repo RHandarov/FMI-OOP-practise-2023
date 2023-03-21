@@ -2,6 +2,7 @@
 #define VENDING_MACHINE_H
 
 const unsigned int CAPACITY = 1000; //for test purpouses
+unsigned int NEW_ID_COUNTER = 1;
 
 struct Inventory {
     unsigned int salty;

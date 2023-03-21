@@ -105,11 +105,11 @@ void VendingMachine::freeWarningMessages() {
 }
 
 VendingMachine::VendingMachine() {
-	copy(0, "", Inventory(), 0, nullptr);
+	copy(NEW_ID_COUNTER++, "", Inventory(), 0, nullptr);
 }
 
 VendingMachine::VendingMachine(char* address, Inventory inventory) {
-	copy(0, address, inventory, 0, nullptr);
+	copy(NEW_ID_COUNTER++, address, inventory, 0, nullptr);
 }
 
 VendingMachine::VendingMachine(VendingMachine const& other) {
