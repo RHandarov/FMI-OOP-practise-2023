@@ -70,7 +70,7 @@ void VendingMachine::setCapacity() {
 	this->capacity = CAPACITY;
 }
 
-void VendingMachine::copy(int id, const char* address, const Inventory& inventory, int numWarningMessages, const char** warningMessages) {
+void VendingMachine::copy(int id, const char* address, const Inventory& inventory, int numWarningMessages, char** warningMessages) {
 	setId(id);
 	setAddress(address);
 	setInventory(inventory);
@@ -80,7 +80,8 @@ void VendingMachine::copy(int id, const char* address, const Inventory& inventor
 	setWarningMessages(warningMessages);
 }
 
-void VendingMachine::move(int id, char* address, const Inventory& inventory, int numWarningMessages, char** warningMessages) {
+void VendingMachine::move(int id, char* address, const Inventory& inventory,
+	int numWarningMessages, char** warningMessages) {
 	setId(id);
 	freeAddress();
 	this->address = address;
@@ -97,7 +98,7 @@ void VendingMachine::freeAddress() {
 }
 
 void VendingMachine::freeWarningMessages() {
-	for (unsigned int index = 0; index < numWarningMsgs; ++index) {
+	for (int index = 0; index < numWarningMsgs; ++index) {
 		delete[] warningMessages[index];
 	}
 
@@ -134,6 +135,17 @@ VendingMachine& VendingMachine::operator=(VendingMachine const& other) {
 VendingMachine::~VendingMachine() {
 	freeAddress();
 	freeWarningMessages();
+}
+
+int VendingMachine::getId() const {
+	return id;
+}
+
+char* VendingMachine::getAddress() const {
+	//address is copied to other memory to avoid direct access to member-field
+	char* buffer = new char[strlen(address) + 1];
+	strcpy(buffer, address);
+	return buffer;
 }
 
 void VendingController::setNumMachines(int numMachines) {
@@ -195,4 +207,23 @@ VendingController& VendingController::operator=(const VendingController& other) 
 
 VendingController::~VendingController() {
 	freeMemory();
+}
+
+void VendingController::addVendingMachine(VendingMachine machine) {
+	if (numMachines == capacity) {
+		throw std::exception("Should not reach here!");
+	}
+
+	++numMachines;
+	vendingMachineList[numMachines] = machine;
+}
+
+char* VendingController::getAddressOfMachine(int machineID) {
+	for (unsigned int index = 0; index < numMachines; ++index) {
+		if (vendingMachineList[index].getId() == machineID) {
+			return vendingMachineList[index].getAddress();
+		}
+	}
+
+	return nullptr;
 }

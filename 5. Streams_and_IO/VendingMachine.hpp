@@ -33,10 +33,10 @@ class VendingMachine {
     void setCapacity();
 
     void copy(int id, const char* address, const Inventory& inventory,
-        int numWarningMessages, const char** warningMessages);
+        int numWarningMessages, char** warningMessages);
 
     void move(int id, char* address, const Inventory& inventory,
-        int numWarningMessages, const char** warningMessages);
+        int numWarningMessages, char** warningMessages);
 
     void freeAddress();
     void freeWarningMessages();
@@ -50,6 +50,8 @@ public:
     ~VendingMachine();
 
     //include other needed methods
+    int getId() const;
+    char* getAddress() const;
 };
 
 
@@ -77,7 +79,7 @@ public:
     ~VendingController();
 
     void addVendingMachine(VendingMachine machine);
-    void getAddressOfMachine(int machineID);
+    char* getAddressOfMachine(int machineID);
     void getInventoryOfMachine(int machineID);
     void sellProductInMachine(int machineID, char* product);
     void restockProductInMachine(int machineID, char* product);
