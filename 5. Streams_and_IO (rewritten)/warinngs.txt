@@ -1,0 +1,4 @@
+#1: Salty products are not in stock!
+#2: Drink products are not in stock!
+#1: Salty products will run out soon!
+#2: Drink products will run out soon!
