@@ -4,6 +4,7 @@
 #include <iostream>
 
 const unsigned int MIN_CAPACITY = 10;
+const unsigned int MAX_STRING_SIZE_FROM_IN_STREAM = 256;
 
 class String {
 private:
@@ -65,6 +66,7 @@ public:
 	bool operator>=(const char* other) const;
 	friend bool operator>=(const char* leftHandSide, const String& rightHandSide);
 
+	friend std::istream& operator>>(std::istream& stream, String& string);
 	friend std::ostream& operator<<(std::ostream& stream, const String& string);
 
 	unsigned int length() const;

@@ -220,7 +220,26 @@ bool operator>=(const char* leftHandSide, const String& rightHandSide) {
 	return strcmp(leftHandSide, rightHandSide.data) >= 0;
 }
 
+std::istream& operator>>(std::istream& stream, String& string) {
+	if (!stream) {
+		string = String();
+
+		return stream;
+	}
+
+	char buffer[MAX_STRING_SIZE_FROM_IN_STREAM + 1];
+	stream.getline(buffer, MAX_STRING_SIZE_FROM_IN_STREAM + 1);
+
+	string = String(buffer);
+
+	return stream;
+}
+
 std::ostream& operator<<(std::ostream& stream, const String& string) {
+	if (!stream) {
+		return stream;
+	}
+
 	stream << string.data;
 	return stream;
 }

@@ -13,5 +13,13 @@ int main() {
 	std::cout << s1 + s2 << std::endl;
 	std::cout << s2 + s1 << std::endl;
 
+	std::cin >> s1 >> s2;
+
+	std::cout << s1 << std::endl;
+	std::cout << s2 << std::endl;
+
+	std::cout << s1 + s2 << std::endl;
+	std::cout << s2 + s1 << std::endl;
+
 	return 0;
 }
