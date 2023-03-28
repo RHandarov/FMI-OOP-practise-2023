@@ -3,6 +3,7 @@
 #include <cstring>
 #include <utility>
 #include <exception>
+#include <iostream>
 
 #include "String.hpp"
 
@@ -143,8 +144,97 @@ String String::operator+(const char* data) const {
 	return String(this->data).append(data);
 }
 
+bool String::operator==(const String& other) const {
+	return strcmp(data, other.data) == 0;
+}
+
+bool String::operator==(const char* other) const {
+	return strcmp(data, other) == 0;
+}
+
+bool String::operator!=(const String& other) const {
+	return strcmp(data, other.data) != 0;
+}
+
+bool String::operator!=(const char* other) const {
+	return strcmp(data, other) != 0;
+}
+
+bool String::operator<=(const String& other) const {
+	return strcmp(data, other.data) <= 0;
+}
+
+bool String::operator<=(const char* other) const {
+	return strcmp(data, other) <= 0;
+}
+
+bool String::operator<(const String& other) const {
+	return strcmp(data, other.data) < 0;
+}
+
+bool String::operator<(const char* other) const {
+	return strcmp(data, other) < 0;
+}
+
+bool String::operator>(const String& other) const {
+	return strcmp(data, other.data) > 0;
+}
+
+bool String::operator>(const char* other) const {
+	return strcmp(data, other) > 0;
+}
+
+bool String::operator>=(const String& other) const {
+	return strcmp(data, other.data) >= 0;
+}
+
+bool String::operator>=(const char* other) const {
+	return strcmp(data, other) >= 0;
+}
+
+bool operator!=(const char* leftHandSide, const String& rightHandSide) {
+	return strcmp(leftHandSide, rightHandSide.data) != 0;
+}
+
+bool operator==(const char* leftHandSide, const String& rightHandSide) {
+	return strcmp(leftHandSide, rightHandSide.data) == 0;
+}
+
 String operator+(const char* leftHandSide, const String& rightHandSide) {
 	return String(leftHandSide).append(rightHandSide.data);
+}
+
+bool operator<=(const char* leftHandSide, const String& rightHandSide) {
+	return strcmp(leftHandSide, rightHandSide.data) <= 0;
+}
+
+bool operator<(const char* leftHandSide, const String& rightHandSide) {
+	return strcmp(leftHandSide, rightHandSide.data) < 0;
+}
+
+bool operator>(const char* leftHandSide, const String& rightHandSide) {
+	return strcmp(leftHandSide, rightHandSide.data) > 0;
+}
+
+bool operator>=(const char* leftHandSide, const String& rightHandSide) {
+	return strcmp(leftHandSide, rightHandSide.data) >= 0;
+}
+
+std::ostream& operator<<(std::ostream& stream, const String& string) {
+	stream << string.data;
+	return stream;
+}
+
+inline unsigned int String::length() const {
+	return size;
+}
+
+inline bool String::empty() const {
+	return size == 0;
+}
+
+inline const char* String::c_str() const {
+	return data;
 }
 
 String::~String() {

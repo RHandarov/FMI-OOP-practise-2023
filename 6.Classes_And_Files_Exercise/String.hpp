@@ -1,6 +1,8 @@
 #ifndef STRING_H
 #define STRING_H
 
+#include <iostream>
+
 const unsigned int MIN_CAPACITY = 10;
 
 class String {
@@ -38,6 +40,37 @@ public:
 	String operator+(const String& other) const;
 	String operator+(const char* data) const;
 	friend String operator+(const char* leftHandSide, const String& rightHandSide);
+
+	bool operator==(const String& other) const;
+	bool operator==(const char* other) const;
+	friend bool operator==(const char* leftHandSide, const String& rightHandSide);
+
+	bool operator!=(const String& other) const;
+	bool operator!=(const char* other) const;
+	friend bool operator!=(const char* leftHandSide, const String& rightHandSide);
+
+	bool operator<=(const String& other) const;
+	bool operator<=(const char* other) const;
+	friend bool operator<=(const char* leftHandSide, const String& rightHandSide);
+
+	bool operator<(const String& other) const;
+	bool operator<(const char* other) const;
+	friend bool operator<(const char* leftHandSide, const String& rightHandSide);
+
+	bool operator>(const String& other) const;
+	bool operator>(const char* other) const;
+	friend bool operator>(const char* leftHandSide, const String& rightHandSide);
+
+	bool operator>=(const String& other) const;
+	bool operator>=(const char* other) const;
+	friend bool operator>=(const char* leftHandSide, const String& rightHandSide);
+
+	friend std::ostream& operator<<(std::ostream& stream, const String& string);
+
+	unsigned int length() const;
+	bool empty() const;
+
+	const char* c_str() const;
 
 	~String();
 };
