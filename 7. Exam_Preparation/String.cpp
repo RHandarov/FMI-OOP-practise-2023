@@ -2,6 +2,7 @@
 
 #include <cstring>
 #include <utility>
+#include <ostream>
 
 #include "String.hpp"
 
@@ -71,6 +72,10 @@ String& String::operator=(String&& other) {
 	}
 
 	return *this;
+}
+
+bool String::operator==(const String& other) const {
+	return strcmp(this->data, other.data) == 0;
 }
 
 String::~String() {

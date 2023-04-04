@@ -25,6 +25,8 @@ public:
 	String& operator=(const String& other);
 	String& operator=(String&& other);
 
+	bool operator==(const String& other) const;
+
 	friend std::ostream& operator<<(std::ostream& stream, const String& string);
 
 	~String();
