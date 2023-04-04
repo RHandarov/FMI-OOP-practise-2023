@@ -2,7 +2,7 @@
 
 #include <cstring>
 #include <utility>
-#include <ostream>
+#include <iostream>
 
 #include "String.hpp"
 
@@ -58,6 +58,10 @@ String::String(String&& other) : data(nullptr) {
 	this->moveFrom(std::move(other));
 }
 
+const char* String::cStr() const {
+	return this->data;
+}
+
 String& String::operator=(const String& other) {
 	if (this != &other) {
 		this->setString(other.data);
@@ -80,6 +84,19 @@ bool String::operator==(const String& other) const {
 
 String::~String() {
 	this->free();
+}
+
+std::istream& operator>>(std::istream& stream, String& string) {
+	stream >> string.size;
+
+	stream.ignore();
+
+	string.capacity = getOptimalCapacity(string.size);
+	string.data = new char[string.capacity];
+	stream.read(string.data, string.size);
+	string.data[string.size] = '\0';
+
+	return stream;
 }
 
 std::ostream& operator<<(std::ostream& stream, const String& string) {

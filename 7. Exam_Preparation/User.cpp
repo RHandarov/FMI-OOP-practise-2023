@@ -1,4 +1,4 @@
-#include <ostream>
+#include <iostream>
 
 #include "User.hpp"
 
@@ -15,6 +15,10 @@ String User::getPassword() const {
 
 bool User::operator==(const User& other) const {
 	return this->username == other.username && this->password == other.password;
+}
+
+std::istream& operator>>(std::istream& stream, User& user) {
+	return stream >> user.username >> user.password;
 }
 
 std::ostream& operator<<(std::ostream& stream, const User& user) {

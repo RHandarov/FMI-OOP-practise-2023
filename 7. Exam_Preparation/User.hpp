@@ -1,7 +1,7 @@
 #ifndef USER_H
 #define USER_H
 
-#include <ostream>
+#include <iostream>
 
 #include "String.hpp"
 
@@ -18,6 +18,7 @@ public:
 
 	bool operator==(const User& other) const;
 
+	friend std::istream& operator>>(std::istream& stream, User& user);
 	friend std::ostream& operator<<(std::ostream& stream, const User& user);
 };
 
